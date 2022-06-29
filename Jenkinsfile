@@ -23,20 +23,25 @@ pipeline{
                     script {
                    final String url = "http://127.0.0.1:8181"
 
-                    //withCredentials([usernameColonPassword(credentialsId: "jenkins-api-token", variable: "API_TOKEN")]) {
+                    withCredentials([usernameColonPassword(credentialsId: "jenkins-api-token", variable: "API_TOKEN")]) {
                         final def (String response, int code) =
                             sh(script: "curl -s -w '\\n%{response_code}' -u $API_TOKEN $url", returnStdout: true)
                                 .trim()
                                 .tokenize("\n")
+                                echo "HTTP response status code: $code"
 
-                        echo "HTTP response status code: $code"
+                                if (code == 200) {
+                                    echo response
+                                }
+                                else
+                                {
+                                    echo 'fail'
+                                }
+                        }//withCredentials([u
+                      }//ending script 
+                 }//ending steps
 
-                        if (code == 200) {
-                            echo response
-                        }
-                }
-
-               }
+               }//ending stage('verifyAndCreateFile')
          }
         // /* Pipeline  Stage 3 read local txt file and echo file content  
         // Pipeline  Stage 3 delete local file and close your server app*/
