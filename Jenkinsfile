@@ -16,6 +16,10 @@ pipeline{
                 //sh 'start https://www.google.com'
                 bat 'node Server.js'
                 bat 'start http://127.0.0.1:8282'
+                echo 'hello'
+                def response = httpRequest 'http://localhost:8080/jenkins/api/json?pretty=true'
+                echo "Status: "+response.status
+                echo "Content: "+response.content
             }
         }
 
