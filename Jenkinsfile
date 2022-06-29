@@ -4,13 +4,13 @@ pipeline{
     agent any
     stages{
         //pipeline Stage 1 launch your server app
-        stage('launchApp'){
-                steps{
-                   //sh 'node Server.js'  
-                   //bat 'start www.google.com'  
-                   bat 'node Server.js'                       
-                }
-        }
+        // stage('launchApp'){
+        //         steps{
+        //            //sh 'node Server.js'  
+        //            //bat 'start www.google.com'  
+        //            bat 'node Server.js'                       
+        //         }
+        // }
        /* Pipeline Stage 2 verify app is up and running by invoke 
        web request to local app url and catch return code is 200 , 
        also catch the return string “hello world” and if succussed  
@@ -20,12 +20,21 @@ pipeline{
 
         stage('verifyAndCreateFile'){
                  steps{
-                    
                     script {
-                    final String url = "http://localhost:8080"
-                    final String response = sh(script: "curl -s $url", returnStdout: true).trim()
-                    echo response
-                }
+                   final String url = "http://127.0.0.1:8181"
+
+                    //withCredentials([usernameColonPassword(credentialsId: "jenkins-api-token", variable: "API_TOKEN")]) {
+                        final def (String response, int code) =
+                            sh(script: "curl -s -w '\\n%{response_code}' -u $API_TOKEN $url", returnStdout: true)
+                                .trim()
+                                .tokenize("\n")
+
+                        echo "HTTP response status code: $code"
+
+                        if (code == 200) {
+                            echo response
+                        }
+                //}
 
                }
          }
@@ -38,5 +47,5 @@ pipeline{
                     
         //         }
         // }
-    }
+    
 }
