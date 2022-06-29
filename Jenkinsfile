@@ -20,7 +20,7 @@ pipeline{
 
         stage('verifyAndCreateFile'){
                  steps{
-                   script {
+                    
                     script {
                     final String url = "http://localhost:8080"
                     final String response = sh(script: "curl -s $url", returnStdout: true).trim()
