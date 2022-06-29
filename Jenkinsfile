@@ -11,9 +11,9 @@ pipeline{
     stages{
         stage('launchApp'){
             steps{
-                //sh 'curl --version'
+                sh 'curl --version'
                 //sh 'curl https://www.google.com'
-                bat 'https://www.google.com'
+                //bat 'https://www.google.com'
             }
         }
 
