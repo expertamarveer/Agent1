@@ -20,12 +20,14 @@ pipeline{
 
         stage('verifyAndCreateFile'){
                  steps{
-                    //sh "node Server.js"  
-                    def response = httpRequest 'http://127.0.0.1:8181'
-                    echo "Status: "+response.status 
-                    echo "Content: "+response.content 
+                   script {
+                    script {
+                    final String url = "http://localhost:8080"
+                    final String response = sh(script: "curl -s $url", returnStdout: true).trim()
+                    echo response
+                }
 
-                 }
+               }
          }
 
         // /* Pipeline  Stage 3 read local txt file and echo file content  
