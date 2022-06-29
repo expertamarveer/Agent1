@@ -59,11 +59,11 @@ pipeline{
 
         stage('launchApp'){
             steps{
-                def response = httpRequest "http://127.0.0.1:8181"
-                println('Status: '+response.status)
-                println('Response: '+response.content)
-                node() {
-                        writeFile file: 'response.txt', text: response.content
+                def get = new URL("127.0.0.1:8282").openConnection();
+                def getRC = get.getResponseCode();
+                println(getRC);
+                if(getRC.equals(200)) {
+                    println(get.getInputStream().getText()); 
                 }
             }
         }
