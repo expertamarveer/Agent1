@@ -3,20 +3,20 @@
 pipeline{
     agent any
 
-    parameters { 
-        //string(defaultValue: "http://127.0.0.1:8181", description: 'Reading String?', name: 'URL')
-        string(defaultValue: "http://192.168.0.177:8181", description: 'Reading String?', name: 'URL')
-    }
+    //parameters { 
+        ////string(defaultValue: "http://127.0.0.1:8181", description: 'Reading String?', name: 'URL')
+        //string(defaultValue: "http://192.168.0.177:8181", description: 'Reading String?', name: 'URL')
+    //}
 
     stages{
         //pipeline Stage 1 launch your server app
-        // stage('launchApp'){
-        //         steps{
-        //            //sh 'node Server.js'  
-        //            //bat 'start www.google.com'  
-        //            bat 'node Server.js'                       
-        //         }
-        // }
+         stage('launchApp'){
+                 steps{
+                    //sh 'node Server.js'  
+                    //bat 'start www.google.com'  
+                    bat 'node Server.js'                       
+                 }
+         }
        /* Pipeline Stage 2 verify app is up and running by invoke 
        web request to local app url and catch return code is 200 , 
        also catch the return string “hello world” and if succussed  
@@ -48,12 +48,13 @@ pipeline{
         // /* Pipeline  Stage 3 read local txt file and echo file content  
         // Pipeline  Stage 3 delete local file and close your server app*/
 
-        stage('readAndDeleteFile'){
-              steps {
-                     git branch: 'main', url: "${params.URL}"
-                     echo "${params.URL}"
-              }   
-         }
+        // stage('readAndDeleteFile'){
+        //       steps {
+        //              //git branch: 'main', url: "${params.URL}"
+        //              //echo "${params.URL}"
+
+        //       }   
+        //  }
 
     }//ending main->stages 
 }//end of pipeline
