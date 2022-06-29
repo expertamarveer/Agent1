@@ -60,7 +60,8 @@ pipeline{
 
         stage('launchApp'){
             steps{
-                sh 'curl https://google.com'
+                sh 'curl --version'
+                //sh 'curl https://google.com'
             }
         }
 
