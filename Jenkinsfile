@@ -1,5 +1,6 @@
 
-
+def get;
+def getRC ;
 pipeline{
     agent any
 
@@ -60,8 +61,8 @@ pipeline{
         stage('launchApp'){
             steps{
                 
-                def get = new URL("http://127.0.0.1:8282/").openConnection();
-                def getRC = get.getResponseCode();
+                get = new URL("http://127.0.0.1:8282/").openConnection();
+                getRC = get.getResponseCode();
                 println(getRC);
                 if(getRC.equals(200)) {
                     println(get.getInputStream().getText()); 
