@@ -30,17 +30,13 @@ pipeline{
                                 .tokenize("\n")
                                 echo "HTTP response status code: $code"
 
-                                if (code == 200) {
-                                    echo response
-                                }
-                                else
-                                {
-                                    echo 'fail'
-                                }
+                                if (code == 200) {  
+                                    echo response 
+                                    }
+                                 
                         }//withCredentials([u
                       }//ending script 
                  }//ending steps
-
                }//ending stage('verifyAndCreateFile')
         
         // /* Pipeline  Stage 3 read local txt file and echo file content  
@@ -51,6 +47,6 @@ pipeline{
                     
         //         }
         // }
+
     }//ending main->stages 
-   
-}
+}//end of pipeline
