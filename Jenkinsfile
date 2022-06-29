@@ -17,11 +17,7 @@ pipeline{
                             //bat 'curl --version'
                             //sh 'start https://www.google.com'
                             bat 'node Server.js'
-                            bat 'start http://127.0.0.1:8282'
-                            echo 'hello'
-                            def response = httpRequest 'http://127.0.0.1:8282'
-                            echo "Status: "+response.status
-                            echo "Content: "+response.content
+                            
                     }catch(Exception ex)
                     {
                             echo("Exception: ${e}")
@@ -32,13 +28,15 @@ pipeline{
         }//end stage
 
         //pipeline Stage 1 launch your server app
-        //  stage('launchApp'){
-        //          steps{
-        //             //sh 'node Server.js'  
-        //             //bat 'start www.google.com'  
-        //             bat 'node Server.js'                       
-        //          }
-        //  }
+          stage('verifyApp'){
+                  steps{
+                            bat 'start http://127.0.0.1:8282'
+                            echo 'hello'
+                            def response = httpRequest 'http://127.0.0.1:8282'
+                            echo "Status: "+response.status
+                            echo "Content: "+response.content                   
+                  }
+        }
        /* Pipeline Stage 2 verify app is up and running by invoke 
        web request to local app url and catch return code is 200 , 
        also catch the return string “hello world” and if succussed  
