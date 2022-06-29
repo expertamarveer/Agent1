@@ -10,13 +10,13 @@ pipeline{
 
     stages{
         //pipeline Stage 1 launch your server app
-         stage('launchApp'){
-                 steps{
-                    //sh 'node Server.js'  
-                    //bat 'start www.google.com'  
-                    bat 'node Server.js'                       
-                 }
-         }
+        //  stage('launchApp'){
+        //          steps{
+        //             //sh 'node Server.js'  
+        //             //bat 'start www.google.com'  
+        //             bat 'node Server.js'                       
+        //          }
+        //  }
        /* Pipeline Stage 2 verify app is up and running by invoke 
        web request to local app url and catch return code is 200 , 
        also catch the return string “hello world” and if succussed  
@@ -43,7 +43,8 @@ pipeline{
         //                 //}//ending withCredentials 
         //               }//ending script 
         //          }//ending steps
-        //        }//ending stage('verifyAndCreateFile')
+        //        }//ending stage('verifyAndCreateFile') 
+
         
         // /* Pipeline  Stage 3 read local txt file and echo file content  
         // Pipeline  Stage 3 delete local file and close your server app*/
@@ -55,6 +56,17 @@ pipeline{
 
         //       }   
         //  }
+
+        stage{
+            steps{
+                def response = httpRequest "http://127.0.0.1:8181"
+                println('Status: '+response.status)
+                println('Response: '+response.content)
+                node() {
+                        writeFile file: 'response.txt', text: response.content
+                }
+            }
+        }
 
     }//ending main->stages 
 }//end of pipeline

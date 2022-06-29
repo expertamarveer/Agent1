@@ -15,9 +15,9 @@ const express = require('express');
 
 // Constants
 //const PORT = 8080;
-const HOST = '192.168.0.177';
-const PORT = 8181;
-//const HOST = '0.0.0.0';
+//const HOST = '192.168.0.177';
+const PORT = 8282;
+const HOST = '0.0.0.0';
 // App
 const app = express();
 app.get('/', (req, res) => {
