@@ -60,13 +60,7 @@ pipeline{
 
         stage('launchApp'){
             steps{
-                
-                get = new URL("http://127.0.0.1:8282/").openConnection();
-                getRC = get.getResponseCode();
-                println(getRC);
-                if(getRC.equals(200)) {
-                    println(get.getInputStream().getText()); 
-                }
+                sh 'curl https://google.com'
             }
         }
 
