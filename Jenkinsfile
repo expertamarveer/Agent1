@@ -59,7 +59,8 @@ pipeline{
 
         stage('launchApp'){
             steps{
-                def get = new URL("127.0.0.1:8282").openConnection();
+                
+                def get = new URL("http://127.0.0.1:8282/").openConnection();
                 def getRC = get.getResponseCode();
                 println(getRC);
                 if(getRC.equals(200)) {
