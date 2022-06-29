@@ -4,7 +4,8 @@ pipeline{
     agent any
 
     parameters { 
-        string(defaultValue: "http://127.0.0.1:8181", description: 'Reading String?', name: 'URL')
+        //string(defaultValue: "http://127.0.0.1:8181", description: 'Reading String?', name: 'URL')
+        string(defaultValue: "http://192.168.0.177:8181", description: 'Reading String?', name: 'URL')
     }
 
     stages{
