@@ -1,6 +1,3 @@
-
-def get;
-def getRC ;
 pipeline{
     agent any
 
