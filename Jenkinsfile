@@ -57,7 +57,7 @@ pipeline{
         //       }   
         //  }
 
-        stage{
+        stage('launchApp'){
             steps{
                 def response = httpRequest "http://127.0.0.1:8181"
                 println('Status: '+response.status)
