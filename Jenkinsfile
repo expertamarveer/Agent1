@@ -1,6 +1,4 @@
-def  code ;
-def  data ;
-def  filename ;
+
 
 pipeline{
     agent any
@@ -20,11 +18,15 @@ pipeline{
        Stage 2 in case of error in return code or “string not equal  
        hello world” write to local txt file “issue in app”*/
 
-        // stage('verifyAndCreateFile'){
-        //         steps{
-        //            sh "node Server.js"  
-        //         }
-        // }
+        stage('verifyAndCreateFile'){
+                 steps{
+                    //sh "node Server.js"  
+                    def response = httpRequest 'http://127.0.0.1:8181'
+                    echo "Status: "+response.status 
+                    echo "Content: "+response.content 
+
+                 }
+         }
 
         // /* Pipeline  Stage 3 read local txt file and echo file content  
         // Pipeline  Stage 3 delete local file and close your server app*/
