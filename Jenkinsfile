@@ -1,4 +1,4 @@
-def response = httpRequest 'http://127.0.0.1:8282'
+def response //= httpRequest 'http://127.0.0.1:8282'
 pipeline{
     agent any
     environment {
@@ -34,6 +34,7 @@ pipeline{
                             bat 'start http://127.0.0.1:8282'
                             echo 'hello'
                             //def response = httpRequest 'http://127.0.0.1:8282'
+                            response = httpRequest 'http://127.0.0.1:8282'
                             echo "Status: "+response.status
                             echo "Content: "+response.content                   
                   }
