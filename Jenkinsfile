@@ -7,6 +7,13 @@ pipeline{
     //}
 
     stages{
+        stage('launchApp'){
+            steps{
+                sh 'curl --version'
+                //sh 'curl https://google.com'
+            }
+        }
+        
         //pipeline Stage 1 launch your server app
         //  stage('launchApp'){
         //          steps{
@@ -55,12 +62,7 @@ pipeline{
         //       }   
         //  }
 
-        stage('launchApp'){
-            steps{
-                sh 'curl --version'
-                //sh 'curl https://google.com'
-            }
-        }
+        
 
     }//ending main->stages 
 }//end of pipeline
