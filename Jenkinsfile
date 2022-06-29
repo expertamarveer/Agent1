@@ -34,11 +34,10 @@ pipeline{
                         if (code == 200) {
                             echo response
                         }
-                //}
+                }
 
                }
          }
-
         // /* Pipeline  Stage 3 read local txt file and echo file content  
         // Pipeline  Stage 3 delete local file and close your server app*/
 
@@ -47,5 +46,5 @@ pipeline{
                     
         //         }
         // }
-    
+    }
 }
