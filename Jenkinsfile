@@ -44,7 +44,7 @@ pipeline{
                                     echo "Content: "+response.content 
                             }catch(Exception ex)
                             {
-                                echo("Exception: ${e}")
+                                echo("Exception: ${ex}")
                                 variable = ""
                             }//end try catch(Exception ex)
                       }  //end script                
@@ -70,7 +70,7 @@ pipeline{
                                     }
                             }catch(Exception ex)
                             {
-                                echo("Exception: ${e}")
+                                echo("Exception: ${ex}")
                                 variable = ""
                             }//end try catch(Exception ex)
                       }  //end script                
@@ -86,14 +86,17 @@ pipeline{
                                 echo  '****************** End Content************'   
 
                                 if (fileExists('response.txt')) {
-                                        new File('response.txt').delete()
+                                        //new File('response.txt').delete()
+                                        //deleteFile('response.txt')
+                                        Files.delete('response.txt');
+                                        echo "file deleted"
                                 } else {
-                                        println "response.txt file not found"
+                                        echo "response.txt file not found"
                                 }
 
                             }catch(Exception ex)
                             {
-                                echo("Exception: ${e}")
+                                echo("Exception: ${ex}")
                                 variable = ""
                             }//end try catch(Exception ex)
                       }  //end script                
