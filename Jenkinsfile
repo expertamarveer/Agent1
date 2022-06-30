@@ -57,26 +57,26 @@ pipeline{
        Stage 2 in case of error in return code or “string not equal  
        hello world” write to local txt file “issue in app”*/
 
-        // stage('verifyAndCreateFile'){
-        //          steps{
-        //             script {
-        //            final String url = "http://127.0.0.1:8282"
+        stage('verifyAndCreateFile'){
+                 steps{
+                    script {
+                   final String url = "http://127.0.0.1:8282"
 
-        //             //withCredentials([usernameColonPassword(credentialsId: "jenkins-api-token", variable: "API_TOKEN")]) {
-        //                 final def (String response, int code) =
-        //                     sh(script: "curl -s -w '\\n%{response_code}' -u $API_TOKEN $url", returnStdout: true)
-        //                         .trim()
-        //                         .tokenize("\n")
-        //                         echo "HTTP response status code: $code"
+                    //withCredentials([usernameColonPassword(credentialsId: "jenkins-api-token", variable: "API_TOKEN")]) {
+                        final def (String response, int code) =
+                            sh(script: "curl -s -w '\\n%{response_code}' -u $API_TOKEN $url", returnStdout: true)
+                                .trim()
+                                .tokenize("\n")
+                                echo "HTTP response status code: $code"
 
-        //                         if (code == 200) {  
-        //                             echo response 
-        //                             }
+                                if (code == 200) {  
+                                    echo response 
+                                    }
                                  
-        //                // }//ending withCredentials 
-        //               }//ending script 
-        //          }//ending steps
-        //        }//ending stage('verifyAndCreateFile') 
+                       // }//ending withCredentials 
+                      }//ending script 
+                 }//ending steps
+               }//ending stage('verifyAndCreateFile') 
 
         
         // /* Pipeline  Stage 3 read local txt file and echo file content  
