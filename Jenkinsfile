@@ -34,12 +34,18 @@ pipeline{
           stage('verifyApp'){
                   steps{
                       script {
-                            bat 'start http://127.0.0.1:8282'
-                            echo 'hello'
-                            //def response = httpRequest 'http://127.0.0.1:8282'
-                            response = httpRequest 'http://127.0.0.1:8282'
-                            echo "Status: "+response.status
-                            echo "Content: "+response.content 
+                           try{
+                                    bat 'start http://127.0.0.1:8282'
+                                    echo 'hello'
+                                    //def response = httpRequest 'http://127.0.0.1:8282'
+                                    response = httpRequest 'http://127.0.0.1:8282'
+                                    echo "Status: "+response.status
+                                    echo "Content: "+response.content 
+                            }catch(Exception ex)
+                            {
+                                echo("Exception: ${e}")
+                                variable = ""
+                            }//end try catch(Exception ex)
                       }  //end script                
                   } //end step
         } //end stage
