@@ -76,9 +76,7 @@ pipeline{
                        // }//ending withCredentials 
                       }//ending script 
                  }//ending steps
-               }//ending stage('verifyAndCreateFile') 
-
-        
+               }//ending stage('verifyAndCreateFile')
         // /* Pipeline  Stage 3 read local txt file and echo file content  
         // Pipeline  Stage 3 delete local file and close your server app*/
 
