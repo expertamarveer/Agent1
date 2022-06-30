@@ -42,13 +42,19 @@ pipeline{
                                     response = httpRequest 'http://127.0.0.1:8282'
                                     echo "Status: "+response.status
                                     echo "Content: "+response.content 
-                                    if(response.status == 200)
+                                    if(response.status == 200 && response.content=="Hello World" )
                                     {
-                                             echo "File Reading Success: "     
+                                             echo "File Reading Success: " 
+                                             node() {
+                                                    writeFile file: 'response.txt', text: 'string equal  hello world'
+                                              }    
                                     }
                                     else
                                     {
-                                             echo "File Reading Fail: "       
+                                             echo "File Reading Fail: "   
+                                             node() {
+                                                    writeFile file: 'response.txt', text: 'issue in app'
+                                              }      
                                     }
                             }catch(Exception ex)
                             {
@@ -65,28 +71,28 @@ pipeline{
        Stage 2 in case of error in return code or “string not equal  
        hello world” write to local txt file “issue in app”*/
 
-        stage('verifyAndCreateFile'){
-                 steps{
-                    script {
-                   final String url = "http://127.0.0.1:8282"
+        // stage('verifyAndCreateFile'){
+        //          steps{
+        //             script {
+        //            final String url = "http://127.0.0.1:8282"
 
-                    //withCredentials([usernameColonPassword(credentialsId: "jenkins-api-token", variable: "API_TOKEN")]) {
-                    //withCredentials([usernameColonPassword(null, variable: "API_TOKEN")]) {    
-                        final def (String response1, int code) =
-                            sh(script: "curl -s -w '\\n%{response_code}' -u $API_TOKEN $url", returnStdout: true)
-                                .trim()
-                                .tokenize("\n")
+        //             //withCredentials([usernameColonPassword(credentialsId: "jenkins-api-token", variable: "API_TOKEN")]) {
+        //             //withCredentials([usernameColonPassword(null, variable: "API_TOKEN")]) {    
+        //                 final def (String response1, int code) =
+        //                     sh(script: "curl -s -w '\\n%{response_code}' -u $API_TOKEN $url", returnStdout: true)
+        //                         .trim()
+        //                         .tokenize("\n")
 
-                                echo "HTTP response status code: $code"
+        //                         echo "HTTP response status code: $code"
 
-                                if (code == 200) {  
-                                    echo 'Code Get = '+response1 
-                                    }
+        //                         if (code == 200) {  
+        //                             echo 'Code Get = '+response1 
+        //                             }
                                  
-                        //}//ending withCredentials 
-                      }//ending script 
-                 }//ending steps
-               }//ending stage('verifyAndCreateFile')
+        //                 //}//ending withCredentials 
+        //               }//ending script 
+        //          }//ending steps
+        //        }//ending stage('verifyAndCreateFile')
         // /* Pipeline  Stage 3 read local txt file and echo file content  
         // Pipeline  Stage 3 delete local file and close your server app*/
 
