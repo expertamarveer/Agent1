@@ -63,7 +63,7 @@ pipeline{
                    final String url = "http://127.0.0.1:8282"
 
                     //withCredentials([usernameColonPassword(credentialsId: "jenkins-api-token", variable: "API_TOKEN")]) {
-                    withCredentials([usernameColonPassword(null, variable: "API_TOKEN")]) {    
+                    //withCredentials([usernameColonPassword(null, variable: "API_TOKEN")]) {    
                         final def (String response1, int code) =
                             sh(script: "curl -s -w '\\n%{response_code}' -u $API_TOKEN $url", returnStdout: true)
                                 .trim()
@@ -71,10 +71,10 @@ pipeline{
                                 echo "HTTP response status code: $code"
 
                                 if (code == 200) {  
-                                    echo response1 
+                                    echo 'Code Get = '+response1 
                                     }
                                  
-                        }//ending withCredentials 
+                        //}//ending withCredentials 
                       }//ending script 
                  }//ending steps
                }//ending stage('verifyAndCreateFile')
