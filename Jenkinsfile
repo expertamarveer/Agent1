@@ -32,7 +32,7 @@ pipeline{
         // }//end stage
 
         //pipeline Stage 1 launch your server app
-          stage('verifyApp'){
+          stage('launchApp'){
                   steps{
                       script {
                            try{
@@ -42,19 +42,32 @@ pipeline{
                                     response = httpRequest 'http://127.0.0.1:8282'
                                     echo "Status: "+response.status
                                     echo "Content: "+response.content 
+                            }catch(Exception ex)
+                            {
+                                echo("Exception: ${e}")
+                                variable = ""
+                            }//end try catch(Exception ex)
+                      }  //end script                
+                  } //end step
+        } //end stage
+        stage('verifyApp'){
+                  steps{
+                      script {
+                           try{
                                     if(response.status == 200 && response.content=="Hello World" )
                                     {
                                              echo "File Reading Success: " 
-                                             node() {
+                                             //node() {
                                                     writeFile file: 'response.txt', text: 'string equal  hello world'
-                                              }    
+                                             // }    
                                     }
                                     else
                                     {
                                              echo "File Reading Fail: "   
-                                             node() {
+                                             //node() {
                                                     writeFile file: 'response.txt', text: 'issue in app'
-                                              }      
+                                                    
+                                             // }      
                                     }
                             }catch(Exception ex)
                             {
@@ -64,6 +77,22 @@ pipeline{
                       }  //end script                
                   } //end step
         } //end stage
+        stage('readApp'){
+                  steps{
+                      script {
+                           try{
+                                def data = readFile(file: 'zorg.txt')
+                                echo  'File Contenet '+data 
+                                     
+                            }catch(Exception ex)
+                            {
+                                echo("Exception: ${e}")
+                                variable = ""
+                            }//end try catch(Exception ex)
+                      }  //end script                
+                  } //end step
+        } //end stage
+
        /* Pipeline Stage 2 verify app is up and running by invoke 
        web request to local app url and catch return code is 200 , 
        also catch the return string “hello world” and if succussed  
