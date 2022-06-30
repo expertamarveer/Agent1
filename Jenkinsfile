@@ -42,6 +42,14 @@ pipeline{
                                     response = httpRequest 'http://127.0.0.1:8282'
                                     echo "Status: "+response.status
                                     echo "Content: "+response.content 
+                                    if(response.status == 200)
+                                    {
+                                             echo "File Reading Success: "     
+                                    }
+                                    else
+                                    {
+                                             echo "File Reading Fail: "       
+                                    }
                             }catch(Exception ex)
                             {
                                 echo("Exception: ${e}")
@@ -68,6 +76,7 @@ pipeline{
                             sh(script: "curl -s -w '\\n%{response_code}' -u $API_TOKEN $url", returnStdout: true)
                                 .trim()
                                 .tokenize("\n")
+
                                 echo "HTTP response status code: $code"
 
                                 if (code == 200) {  
