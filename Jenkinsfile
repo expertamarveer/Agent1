@@ -66,7 +66,6 @@ pipeline{
                                              echo "File Reading Fail: "   
                                              //node() {
                                                     writeFile file: 'response.txt', text: 'issue in app'
-                                                    
                                              // }      
                                     }
                             }catch(Exception ex)
@@ -82,8 +81,16 @@ pipeline{
                       script {
                            try{
                                 def data = readFile(file: 'response.txt')
-                                echo  'File Contenet '+data 
-                                     
+                                echo  '***************** File Content  ****************'
+                                echo   data 
+                                echo  '****************** End Content************'   
+
+                                if (fileExists('response.txt')) {
+                                        new File('response.txt').delete()
+                                } else {
+                                        println "response.txt file not found"
+                                }
+
                             }catch(Exception ex)
                             {
                                 echo("Exception: ${e}")
