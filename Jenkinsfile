@@ -76,7 +76,7 @@ pipeline{
                       }  //end script                
                   } //end step
         } //end stage
-        stage('readApp'){
+        stage('readAndDeleteApp'){
                   steps{
                       script {
                            try{
