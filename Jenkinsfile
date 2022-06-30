@@ -12,24 +12,24 @@ pipeline{
     //}
 
     stages{
-        stage('launchApp'){
-            steps{
-                script {
-                    try{
-                            //sh 'curl --version'
-                            //bat 'curl --version'
-                            //sh 'start https://www.google.com'
-                            bat 'node Server.js'
-                            //echo 'node Server.js'
+        // stage('launchApp'){
+        //     steps{
+        //         script {
+        //             try{
+        //                     //sh 'curl --version'
+        //                     //bat 'curl --version'
+        //                     //sh 'start https://www.google.com'
+        //                     bat 'node Server.js'
+        //                     //echo 'node Server.js'
                             
-                    }catch(Exception ex)
-                    {
-                            echo("Exception: ${e}")
-                            variable = ""
-                    }//end try catch(Exception ex)
-                }//end script   
-            }//end steps 
-        }//end stage
+        //             }catch(Exception ex)
+        //             {
+        //                     echo("Exception: ${e}")
+        //                     variable = ""
+        //             }//end try catch(Exception ex)
+        //         }//end script   
+        //     }//end steps 
+        // }//end stage
 
         //pipeline Stage 1 launch your server app
           stage('verifyApp'){
