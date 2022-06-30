@@ -81,7 +81,7 @@ pipeline{
                   steps{
                       script {
                            try{
-                                def data = readFile(file: 'zorg.txt')
+                                def data = readFile(file: 'response.txt')
                                 echo  'File Contenet '+data 
                                      
                             }catch(Exception ex)
