@@ -1,4 +1,4 @@
-import groovy.json.JsonSlurper
+//import groovy.json.JsonSlurper
 def response //= httpRequest 'http://127.0.0.1:8282'
 
 pipeline{
@@ -19,8 +19,8 @@ pipeline{
                             //sh 'curl --version'
                             //bat 'curl --version'
                             //sh 'start https://www.google.com'
-                            //bat 'node Server.js'
-                            echo 'node Server.js'
+                            bat 'node Server.js'
+                            //echo 'node Server.js'
                             
                     }catch(Exception ex)
                     {
@@ -36,7 +36,7 @@ pipeline{
                   steps{
                       script {
                            try{
-                                    echo 'start http://127.0.0.1:8282'
+                                    bat 'start http://127.0.0.1:8282'
                                     echo 'hello'
                                     //def response = httpRequest 'http://127.0.0.1:8282'
                                     response = httpRequest 'http://127.0.0.1:8282'
