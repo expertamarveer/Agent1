@@ -1,0 +1,37 @@
+Jul 04, 2022 11:02:52 AM hudson.remoting.jnlp.Main createEngine
+INFO: Setting up agent: Agent1
+Jul 04, 2022 11:02:52 AM hudson.remoting.jnlp.Main$CuiListener <init>
+INFO: Jenkins agent is running in headless mode.
+Jul 04, 2022 11:02:52 AM hudson.remoting.Engine startEngine
+INFO: Using Remoting version: 4.13.2
+Jul 04, 2022 11:02:52 AM org.jenkinsci.remoting.engine.WorkDirManager initializeWorkDir
+INFO: Using C:\Agent1\remoting as a remoting work directory
+Jul 04, 2022 11:02:52 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Locating server among [http://192.168.0.177:8080/]
+Jul 04, 2022 11:02:52 AM org.jenkinsci.remoting.engine.JnlpAgentEndpointResolver resolve
+INFO: Remoting server accepts the following protocols: [JNLP4-connect, Ping]
+Jul 04, 2022 11:02:52 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Agent discovery successful
+  Agent address: 192.168.0.177
+  Agent port:    49525
+  Identity:      38:fc:0f:73:48:b8:de:18:f4:52:81:3c:1a:24:4f:02
+Jul 04, 2022 11:02:52 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Handshaking
+Jul 04, 2022 11:02:52 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Connecting to 192.168.0.177:49525
+Jul 04, 2022 11:02:52 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Trying protocol: JNLP4-connect
+Jul 04, 2022 11:02:53 AM org.jenkinsci.remoting.protocol.impl.BIONetworkLayer$Reader run
+INFO: Waiting for ProtocolStack to start.
+Jul 04, 2022 11:02:53 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Remote identity confirmed: 38:fc:0f:73:48:b8:de:18:f4:52:81:3c:1a:24:4f:02
+Jul 04, 2022 11:02:53 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Connected
+Jul 04, 2022 11:02:54 AM com.youdevise.hudson.slavestatus.SlaveListener call
+INFO: Slave-status listener starting
+Jul 04, 2022 11:02:54 AM com.youdevise.hudson.slavestatus.SocketHTTPListener waitForConnection
+INFO: Slave-status listener ready on port 3141
+Jul 04, 2022 11:04:37 AM org.apache.http.client.protocol.ResponseProcessCookies processCookies
+WARNING: Invalid cookie header: "Set-Cookie: ADRUM_BT=R:0|i:1956730|g:09785d12-dac4-4428-a05d-49f8b3f1a83a8|e:1|n:siemensil_63f35fef-d227-4fc9-9007-ca529caf8d5e; Path=/; Expires=Mon, 04 Jul 2022 05:35:07 GMT". Invalid 'expires' attribute: Mon, 04 Jul 2022 05:35:07 GMT
+Jul 04, 2022 11:06:23 AM org.apache.http.client.protocol.ResponseProcessCookies processCookies
+WARNING: Invalid cookie header: "Set-Cookie: ADRUM_BT=R:0|i:1956730|g:09785d12-dac4-4428-a05d-49f8b3f1a83a10|e:3|n:siemensil_63f35fef-d227-4fc9-9007-ca529caf8d5e; Path=/; Expires=Mon, 04 Jul 2022 05:36:53 GMT". Invalid 'expires' attribute: Mon, 04 Jul 2022 05:36:53 GMT

@@ -1,4 +1,7 @@
 //import groovy.json.JsonSlurper
+@Library('your-jenkins-library')_    
+import static org.utils.PipelineUtils.*
+
 def response //= httpRequest 'http://127.0.0.1:8282'
 
 pipeline{
@@ -73,8 +76,9 @@ pipeline{
 
                                 if (fileExists('response.txt')) {
                                         //new File('response.txt').delete()
-                                        //deleteFile('response.txt')
-                                        Files.delete('response.txt');
+                                        deleteFile('response.txt')
+                                        //deleteFile('test.zip')
+                                        //Files.delete('response.txt');
                                         echo "file deleted"
                                 } else {
                                         echo "response.txt file not found"
