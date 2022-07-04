@@ -1,5 +1,5 @@
 //import groovy.json.JsonSlurper
-@Library('your-jenkins-library')_    
+//@Library('your-jenkins-library')_    
 import static org.utils.PipelineUtils.*
 
 def response //= httpRequest 'http://127.0.0.1:8282'
