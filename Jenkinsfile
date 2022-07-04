@@ -29,7 +29,7 @@ pipeline{
                                     echo "Port     : "+response
                             }catch(Exception ex)
                             {
-                                echo("Exception: ${ex}")
+                                echo("Launch App Exception: ${ex}")
                                 variable = ""
                             }//end try catch(Exception ex)
                       }  //end script                
