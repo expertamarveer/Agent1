@@ -71,14 +71,14 @@ pipeline{
                                 echo   data 
                                 echo  '****************** End Content ************'   
 
-                                if (fileExists('response.txt')) {
-                                        //new File('response.txt').delete()
-                                        //deleteFile('response.txt')
-                                        Files.delete('response.txt');
-                                        echo "file deleted"
-                                } else {
-                                        echo "response.txt file not found"
-                                }
+                                // if (fileExists('response.txt')) {
+                                //         //new File('response.txt').delete()
+                                //         //deleteFile('response.txt')
+                                //         Files.delete('response.txt');
+                                //         echo "file deleted"
+                                // } else {
+                                //         echo "response.txt file not found"
+                                // }
 
                             }catch(Exception ex)
                             {
