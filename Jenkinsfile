@@ -24,8 +24,9 @@ pipeline{
                                     echo 'hello'
                                     //def response = httpRequest 'http://127.0.0.1:8282'
                                     response = httpRequest 'http://127.0.0.1:8282'
-                                    echo "Status:  "+response.status
-                                    echo "Content: "+response.content 
+                                    echo "Status   : "+response.status
+                                    echo "Content  : "+response.content 
+                                    echo "Port     : "+response
                             }catch(Exception ex)
                             {
                                 echo("Exception: ${ex}")
@@ -42,7 +43,7 @@ pipeline{
                                     {
                                              echo "File Reading Success: " 
                                              //node() {
-                                                    writeFile file: 'response.txt', text: 'string equal  hello world'
+                                                    writeFile file: 'response.txt', text: 'string equal hello world'
                                              // }    
                                     }
                                     else
@@ -80,7 +81,7 @@ pipeline{
 
                             }catch(Exception ex)
                             {
-                                echo("Exception: ${ex}")
+                                echo("File Deletion Exception: ${ex}")
                                 variable = ""
                             }//end try catch(Exception ex)
                       }  //end script                
