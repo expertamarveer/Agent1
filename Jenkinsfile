@@ -77,9 +77,9 @@ pipeline{
                                 if (fileExists('response.txt')) {
                                         //new File('response.txt').delete()
                                         //deleteFile('response.txt')
-                                        deleteFile file :'response.txt' 
+                                        //deleteFile file :'response.txt' 
                                         //deleteFile('test.zip')
-                                        //Files.delete('response.txt');
+                                        Files.delete('response.txt');
                                         echo "file deleted"
                                 } else {
                                         echo "response.txt file not found"
