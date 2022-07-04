@@ -56,7 +56,7 @@ pipeline{
                             }catch(Exception ex)
                             {
                                 writeFile file: 'response.txt', text: 'issue in app'
-                                echo("Exception: ${ex}")
+                                echo("Reading Exception: ${ex}")
                                 variable = ""
                             }//end try catch(Exception ex)
                       }  //end script                
