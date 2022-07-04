@@ -75,8 +75,9 @@ pipeline{
                                 echo  '****************** End Content ************'   
 
                                 if (fileExists('response.txt')) {
-                                        new File('response.txt').delete()
-                                        deleteFile('response.txt')
+                                        //new File('response.txt').delete()
+                                        //deleteFile('response.txt')
+                                        deleteFile file :'response.txt' 
                                         //deleteFile('test.zip')
                                         //Files.delete('response.txt');
                                         echo "file deleted"
