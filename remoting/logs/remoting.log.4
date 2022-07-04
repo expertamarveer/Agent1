@@ -1,20 +1,140 @@
-Jun 30, 2022 8:31:47 AM hudson.remoting.jnlp.Main createEngine
+Jun 30, 2022 8:37:35 AM hudson.remoting.jnlp.Main createEngine
 INFO: Setting up agent: Agent1
-Jun 30, 2022 8:31:47 AM hudson.remoting.jnlp.Main$CuiListener <init>
+Jun 30, 2022 8:37:35 AM hudson.remoting.jnlp.Main$CuiListener <init>
 INFO: Jenkins agent is running in headless mode.
-Jun 30, 2022 8:31:47 AM hudson.remoting.Engine startEngine
+Jun 30, 2022 8:37:35 AM hudson.remoting.Engine startEngine
 INFO: Using Remoting version: 4.13.2
-Jun 30, 2022 8:31:47 AM org.jenkinsci.remoting.engine.WorkDirManager initializeWorkDir
+Jun 30, 2022 8:37:35 AM org.jenkinsci.remoting.engine.WorkDirManager initializeWorkDir
 INFO: Using C:\Agent1\remoting as a remoting work directory
-Jun 30, 2022 8:31:47 AM hudson.remoting.jnlp.Main$CuiListener status
+Jun 30, 2022 8:37:36 AM hudson.remoting.jnlp.Main$CuiListener status
 INFO: Locating server among [http://192.168.0.177:8080/]
-Jun 30, 2022 8:32:08 AM hudson.remoting.jnlp.Main$CuiListener error
-SEVERE: Failed to connect to http://192.168.0.177:8080/tcpSlaveAgentListener/: Connection timed out: connect
-java.io.IOException: Failed to connect to http://192.168.0.177:8080/tcpSlaveAgentListener/: Connection timed out: connect
+Jun 30, 2022 8:37:36 AM org.jenkinsci.remoting.engine.JnlpAgentEndpointResolver resolve
+INFO: Remoting server accepts the following protocols: [JNLP4-connect, Ping]
+Jun 30, 2022 8:37:36 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Agent discovery successful
+  Agent address: 192.168.0.177
+  Agent port:    49181
+  Identity:      38:fc:0f:73:48:b8:de:18:f4:52:81:3c:1a:24:4f:02
+Jun 30, 2022 8:37:36 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Handshaking
+Jun 30, 2022 8:37:36 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Connecting to 192.168.0.177:49181
+Jun 30, 2022 8:37:36 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Trying protocol: JNLP4-connect
+Jun 30, 2022 8:37:36 AM org.jenkinsci.remoting.protocol.impl.BIONetworkLayer$Reader run
+INFO: Waiting for ProtocolStack to start.
+Jun 30, 2022 8:37:47 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Protocol JNLP4-connect encountered an unexpected exception
+java.util.concurrent.ExecutionException: org.jenkinsci.remoting.protocol.impl.ConnectionRefusalException: Connection closed before acknowledgement sent
+	at org.jenkinsci.remoting.util.SettableFuture.get(SettableFuture.java:223)
+	at hudson.remoting.Engine.innerRun(Engine.java:799)
+	at hudson.remoting.Engine.run(Engine.java:544)
+Caused by: org.jenkinsci.remoting.protocol.impl.ConnectionRefusalException: Connection closed before acknowledgement sent
+	at org.jenkinsci.remoting.protocol.impl.AckFilterLayer.onRecvClosed(AckFilterLayer.java:280)
+	at org.jenkinsci.remoting.protocol.FilterLayer.abort(FilterLayer.java:165)
+	at org.jenkinsci.remoting.protocol.impl.AckFilterLayer.lambda$start$0(AckFilterLayer.java:177)
+	at org.jenkinsci.remoting.protocol.IOHub$DelayedRunnable.run(IOHub.java:958)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at hudson.remoting.Engine$1.lambda$newThread$0(Engine.java:126)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+Jun 30, 2022 8:37:47 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: reconnect rejected, sleeping 10s: 
+java.lang.Exception: The server rejected the connection: None of the protocols were accepted
+	at hudson.remoting.Engine.onConnectionRejected(Engine.java:878)
+	at hudson.remoting.Engine.innerRun(Engine.java:825)
+	at hudson.remoting.Engine.run(Engine.java:544)
+
+Jun 30, 2022 8:37:57 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Locating server among [http://192.168.0.177:8080/]
+Jun 30, 2022 8:38:00 AM org.jenkinsci.remoting.engine.JnlpAgentEndpointResolver resolve
+INFO: Remoting server accepts the following protocols: [JNLP4-connect, Ping]
+Jun 30, 2022 8:38:00 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Agent discovery successful
+  Agent address: 192.168.0.177
+  Agent port:    49181
+  Identity:      38:fc:0f:73:48:b8:de:18:f4:52:81:3c:1a:24:4f:02
+Jun 30, 2022 8:38:00 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Handshaking
+Jun 30, 2022 8:38:00 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Connecting to 192.168.0.177:49181
+Jun 30, 2022 8:38:00 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Trying protocol: JNLP4-connect
+Jun 30, 2022 8:38:00 AM org.jenkinsci.remoting.protocol.impl.BIONetworkLayer$Reader run
+INFO: Waiting for ProtocolStack to start.
+Jun 30, 2022 8:38:11 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Protocol JNLP4-connect encountered an unexpected exception
+java.util.concurrent.ExecutionException: org.jenkinsci.remoting.protocol.impl.ConnectionRefusalException: Connection closed before acknowledgement sent
+	at org.jenkinsci.remoting.util.SettableFuture.get(SettableFuture.java:223)
+	at hudson.remoting.Engine.innerRun(Engine.java:799)
+	at hudson.remoting.Engine.run(Engine.java:544)
+Caused by: org.jenkinsci.remoting.protocol.impl.ConnectionRefusalException: Connection closed before acknowledgement sent
+	at org.jenkinsci.remoting.protocol.impl.AckFilterLayer.onRecvClosed(AckFilterLayer.java:280)
+	at org.jenkinsci.remoting.protocol.FilterLayer.abort(FilterLayer.java:165)
+	at org.jenkinsci.remoting.protocol.impl.AckFilterLayer.lambda$start$0(AckFilterLayer.java:177)
+	at org.jenkinsci.remoting.protocol.IOHub$DelayedRunnable.run(IOHub.java:958)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at hudson.remoting.Engine$1.lambda$newThread$0(Engine.java:126)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+Jun 30, 2022 8:38:11 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: reconnect rejected, sleeping 10s: 
+java.lang.Exception: The server rejected the connection: None of the protocols were accepted
+	at hudson.remoting.Engine.onConnectionRejected(Engine.java:878)
+	at hudson.remoting.Engine.innerRun(Engine.java:825)
+	at hudson.remoting.Engine.run(Engine.java:544)
+
+Jun 30, 2022 8:38:21 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Locating server among [http://192.168.0.177:8080/]
+Jun 30, 2022 8:38:22 AM org.jenkinsci.remoting.engine.JnlpAgentEndpointResolver resolve
+INFO: Remoting server accepts the following protocols: [JNLP4-connect, Ping]
+Jun 30, 2022 8:38:22 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Agent discovery successful
+  Agent address: 192.168.0.177
+  Agent port:    49181
+  Identity:      38:fc:0f:73:48:b8:de:18:f4:52:81:3c:1a:24:4f:02
+Jun 30, 2022 8:38:22 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Handshaking
+Jun 30, 2022 8:38:22 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Connecting to 192.168.0.177:49181
+Jun 30, 2022 8:38:22 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Trying protocol: JNLP4-connect
+Jun 30, 2022 8:38:24 AM org.jenkinsci.remoting.protocol.impl.BIONetworkLayer$Reader run
+INFO: Waiting for ProtocolStack to start.
+Jun 30, 2022 8:38:35 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Protocol JNLP4-connect encountered an unexpected exception
+java.util.concurrent.ExecutionException: org.jenkinsci.remoting.protocol.impl.ConnectionRefusalException: Connection closed before acknowledgement sent
+	at org.jenkinsci.remoting.util.SettableFuture.get(SettableFuture.java:223)
+	at hudson.remoting.Engine.innerRun(Engine.java:799)
+	at hudson.remoting.Engine.run(Engine.java:544)
+Caused by: org.jenkinsci.remoting.protocol.impl.ConnectionRefusalException: Connection closed before acknowledgement sent
+	at org.jenkinsci.remoting.protocol.impl.AckFilterLayer.onRecvClosed(AckFilterLayer.java:280)
+	at org.jenkinsci.remoting.protocol.FilterLayer.abort(FilterLayer.java:165)
+	at org.jenkinsci.remoting.protocol.impl.AckFilterLayer.lambda$start$0(AckFilterLayer.java:177)
+	at org.jenkinsci.remoting.protocol.IOHub$DelayedRunnable.run(IOHub.java:958)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at hudson.remoting.Engine$1.lambda$newThread$0(Engine.java:126)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+Jun 30, 2022 8:38:35 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: reconnect rejected, sleeping 10s: 
+java.lang.Exception: The server rejected the connection: None of the protocols were accepted
+	at hudson.remoting.Engine.onConnectionRejected(Engine.java:878)
+	at hudson.remoting.Engine.innerRun(Engine.java:825)
+	at hudson.remoting.Engine.run(Engine.java:544)
+
+Jun 30, 2022 8:38:45 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Locating server among [http://192.168.0.177:8080/]
+Jun 30, 2022 8:38:53 AM hudson.remoting.jnlp.Main$CuiListener error
+SEVERE: Failed to connect to http://192.168.0.177:8080/tcpSlaveAgentListener/: Software caused connection abort: connect
+java.io.IOException: Failed to connect to http://192.168.0.177:8080/tcpSlaveAgentListener/: Software caused connection abort: connect
 	at org.jenkinsci.remoting.engine.JnlpAgentEndpointResolver.resolve(JnlpAgentEndpointResolver.java:214)
 	at hudson.remoting.Engine.innerRun(Engine.java:745)
 	at hudson.remoting.Engine.run(Engine.java:544)
-Caused by: java.net.ConnectException: Connection timed out: connect
+Caused by: java.net.SocketException: Software caused connection abort: connect
 	at java.base/java.net.PlainSocketImpl.waitForConnect(Native Method)
 	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107)
 	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:412)

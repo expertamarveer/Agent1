@@ -12,35 +12,19 @@ pipeline{
     //}
 
     stages{
-        // stage('launchApp'){
-        //     steps{
-        //         script {
-        //             try{
-        //                     //sh 'curl --version'
-        //                     //bat 'curl --version'
-        //                     //sh 'start https://www.google.com'
-        //                     bat 'node Server.js'
-        //                     //echo 'node Server.js'
-                            
-        //             }catch(Exception ex)
-        //             {
-        //                     echo("Exception: ${e}")
-        //                     variable = ""
-        //             }//end try catch(Exception ex)
-        //         }//end script   
-        //     }//end steps 
-        // }//end stage
+       
 
         //pipeline Stage 1 launch your server app
           stage('launchApp'){
                   steps{
                       script {
                            try{
+                                    //bat 'node Server.js'
                                     bat 'start http://127.0.0.1:8282'
                                     echo 'hello'
                                     //def response = httpRequest 'http://127.0.0.1:8282'
                                     response = httpRequest 'http://127.0.0.1:8282'
-                                    echo "Status: "+response.status
+                                    echo "Status:  "+response.status
                                     echo "Content: "+response.content 
                             }catch(Exception ex)
                             {
@@ -83,7 +67,7 @@ pipeline{
                                 def data = readFile(file: 'response.txt')
                                 echo  '***************** File Content  ****************'
                                 echo   data 
-                                echo  '****************** End Content************'   
+                                echo  '****************** End Content ************'   
 
                                 if (fileExists('response.txt')) {
                                         //new File('response.txt').delete()
@@ -103,6 +87,23 @@ pipeline{
                   } //end step
         } //end stage
 
+        // stage('launchApp'){
+        //     steps{
+        //         script {
+        //             try{
+        //                     //sh 'curl --version'
+        //                     //bat 'curl --version'
+        //                     //sh 'start https://www.google.com'
+        //                     bat 'node Server.js'
+        //                     //echo 'node Server.js'                         
+        //             }catch(Exception ex)
+        //             {
+        //                     echo("Exception: ${e}")
+        //                     variable = ""
+        //             }//end try catch(Exception ex)
+        //         }//end script   
+        //     }//end steps 
+        // }//end stage
        /* Pipeline Stage 2 verify app is up and running by invoke 
        web request to local app url and catch return code is 200 , 
        also catch the return string “hello world” and if succussed  
