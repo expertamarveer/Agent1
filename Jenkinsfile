@@ -1,158 +1,151 @@
-//import groovy.json.JsonSlurper
-//@Library('your-jenkins-library')_    
-//import static org.utils.PipelineUtils.*
+ 
+def response
 
-def response //= httpRequest 'http://127.0.0.1:8282'
+def child 
+
+def HOST = '127.0.0.1';
+def PORT = '8181';
+ 
 
 pipeline{
+
     agent any
-    // environment {
-    //     PATH = "/usr/local/bin:${env.PATH}"
-    //     }
-    //parameters { 
-        ////string(defaultValue: "http://127.0.0.1:8181", description: 'Reading String?', name: 'URL')
-        //string(defaultValue: "http://192.168.0.177:8181", description: 'Reading String?', name: 'URL')
-    //}
 
     stages{
-       
+            stage("All"){
+                parallel{
 
-        //pipeline Stage 1 launch your server app
-          stage('launchApp'){
-                  steps{
-                      script {
-                           try{
-                                    //bat 'node Server.js'
-                                    bat 'start http://127.0.0.1:8282'
-                                    echo 'hello'
-                                    //def response = httpRequest 'http://127.0.0.1:8282'
-                                    response = httpRequest 'http://127.0.0.1:8282'
-                                    echo "Status   : "+response.status
-                                    echo "Content  : "+response.content 
-                                    echo "Port     : "+response
-                            }catch(Exception ex)
-                            {
-                                echo("Launch App Exception: ${ex}")
-                                variable = ""
-                            }//end try catch(Exception ex)
-                      }  //end script                
-                  } //end step
-        } //end stage
-        stage('verifyApp'){
-                  steps{
-                      script {
-                           try{
-                                    if(response.status == 200 && response.content=="Hello World" )
-                                    {
-                                             echo "File Reading Success: " 
-                                             //node() {
-                                                    writeFile file: 'response.txt', text: 'string equal hello world'
-                                             // }    
-                                    }
-                                    else
-                                    {
-                                             echo "File Reading Fail: "   
-                                             //node() {
-                                                    writeFile file: 'response.txt', text: 'issue in app'
-                                             // }      
-                                    }
-                            }catch(Exception ex)
-                            {
-                                writeFile file: 'response.txt', text: 'issue in app'
-                                echo("Reading Exception: ${ex}")
-                                variable = ""
-                            }//end try catch(Exception ex)
-                      }  //end script                
-                  } //end step
-        } //end stage
-        stage('readAndDeleteApp'){
-                  steps{
-                      script {
-                           try{
-                                def data = readFile(file: 'response.txt')
-                                echo  '***************** File Content  ****************'
-                                echo   data 
-                                echo  '****************** End Content ************'   
+                
+                        stage("Luanch"){
+                            steps{
+                                 script {
+                                            try{
+                                            echo "hello 1"
+                                            //bat 'node Server.js'
+                                            sh 'node Server.js'
+                                        
+                                            }catch(Exception ex)
+                                            {
+                                                echo("Launch App Exception: ${ex}")
+                                                    
+                                            }//end try catch(Exception ex)
+                                 }
+                            }
+                        }
+                        stage("Invoke"){
+                            steps{
+                                //echo "hello 2"
+                                //--------------code start---------
+                                 script {
+                                        try{
+                                                    //bat 'node Server.js'
+                                                    sleep 2
+                                                    bat 'start chrome http://127.0.0.1:8181'
+                                                    //sh 'curl -X POST http://127.0.0.1:8181'
+                                                    echo 'hello'
+                                                    //def response = httpRequest 'http://127.0.0.1:8282'
+                                                    response = httpRequest 'http://127.0.0.1:8181'
+                                                    echo "Status   : "+response.status
+                                                    echo "Content  : "+response.content 
 
-                                if (fileExists('response.txt')) {
-                                        bat 'del response.txt'
-                                        //new File('response.txt').delete()
-                                        //deleteFile('response.txt')
-                                        //deleteFile file :'response.txt' 
-                                        //deleteFile('test.zip')
-                                        //Files.delete('response.txt');
-                                        echo "file deleted"
-                                } else {
-                                        echo "response.txt file not found"
-                                }
+                                                    //def pids = require('port-pid');
+                                                    //echo "pids(8181)  : "+pids(8181)  
 
-                            }catch(Exception ex)
-                            {
-                                echo("File Deletion Exception: ${ex}")
-                                variable = ""
-                            }//end try catch(Exception ex)
-                      }  //end script                
-                  } //end step
-        } //end stage
+                                                    // pids(8181).then(pids => {                                                       
+                                                    //     console.log(pids.all);
+                                                    //     //=> [1234, 5678]                                                       
+                                                    //     console.log(pids.tcp);
+                                                    //     //=> [1234]                                                       
+                                                    //     console.log(pids.udp);
+                                                    //     //=> [5678]
+                                                    // });  
 
-        // stage('launchApp'){
-        //     steps{
-        //         script {
-        //             try{
-        //                     //sh 'curl --version'
-        //                     //bat 'curl --version'
-        //                     //sh 'start https://www.google.com'
-        //                     bat 'node Server.js'
-        //                     //echo 'node Server.js'                         
-        //             }catch(Exception ex)
-        //             {
-        //                     echo("Exception: ${e}")
-        //                     variable = ""
-        //             }//end try catch(Exception ex)
-        //         }//end script   
-        //     }//end steps 
-        // }//end stage
-       /* Pipeline Stage 2 verify app is up and running by invoke 
-       web request to local app url and catch return code is 200 , 
-       also catch the return string “hello world” and if succussed  
-       write to local txt file ““string equal  hello world” Pipeline 
-       Stage 2 in case of error in return code or “string not equal  
-       hello world” write to local txt file “issue in app”*/
+                                            }catch(Exception ex)
+                                            {
+                                                echo("Invoke App Exception: ${ex}")
+                                                 
+                                            }//end try catch(Exception ex)
+                                }  //end script     
+                                //--------------code cend-----------
+                            }
+                        } 
 
-        // stage('verifyAndCreateFile'){
-        //          steps{
-        //             script {
-        //            final String url = "http://127.0.0.1:8282"
+                        stage('verify'){
+                            steps{
+                                script {
+                                    try{
+                                                 sleep 4
+                                                if(response.status == 200 && response.content=="Hello World" )
+                                                {
+                                                        echo "File Reading Success : " 
+                                                        //node() {
+                                                        writeFile file: 'response.txt', text: 'string equal hello world'
+                                                        // }    
+                                                }
+                                                else
+                                                {
+                                                        echo "File Reading Fail : "   
+                                                        //node() {
+                                                        writeFile file: 'response.txt', text: 'issue in app'
+                                                        // }      
+                                                }
+                                               
 
-        //             //withCredentials([usernameColonPassword(credentialsId: "jenkins-api-token", variable: "API_TOKEN")]) {
-        //             //withCredentials([usernameColonPassword(null, variable: "API_TOKEN")]) {    
-        //                 final def (String response1, int code) =
-        //                     sh(script: "curl -s -w '\\n%{response_code}' -u $API_TOKEN $url", returnStdout: true)
-        //                         .trim()
-        //                         .tokenize("\n")
+                                        }catch(Exception ex)
+                                        {
+                                            writeFile file: 'response.txt', text: 'issue in app'
+                                            echo("verify Exception: ${ex}")  
+                                        }//end try catch(Exception ex)
+                                }  //end script                
+                            } //end step
+                        } //end stage verifyApp
 
-        //                         echo "HTTP response status code: $code"
+                        stage('readAndClose'){
+                                    steps{
+                                        script {
+                                            try{
+                                                    sleep 6
+                                                    def data = readFile(file: 'response.txt')
+                                                    echo  '***************** File Content  ****************'
+                                                    echo   data 
+                                                    echo  '****************** End Content ************'   
 
-        //                         if (code == 200) {  
-        //                             echo 'Code Get = '+response1 
-        //                             }
-                                 
-        //                 //}//ending withCredentials 
-        //               }//ending script 
-        //          }//ending steps
-        //        }//ending stage('verifyAndCreateFile')
-        // /* Pipeline  Stage 3 read local txt file and echo file content  
-        // Pipeline  Stage 3 delete local file and close your server app*/
+                                                    if (fileExists('response.txt')) {
+                                                            bat 'del response.txt'
+                                                            //new File('response.txt').delete()
+                                                            //deleteFile('response.txt')
+                                                            //deleteFile file :'response.txt' 
+                                                            //deleteFile('test.zip')
+                                                            //Files.delete('response.txt');
+                                                            echo "file deleted"
+                                                            
+                                
+                                                    } else {
+                                                            echo "response.txt file not found"
+                                                    }
+                                                    //bat 'Taskkill /IM node.exe /F'
+                                                    //bat 'npx kill-port 8181'
 
-        // stage('readAndDeleteFile'){
-        //       steps {
-        //              //git branch: 'main', url: "${params.URL}"
-        //              //echo "${params.URL}"
+                                                    bat 'node Stop.js'
 
-        //       }   
-        //  }
+                                                    //def app = express();
+                                                    //app.stop(HOST,PORT);
+                                                    //app.close(HOST,PORT);
+                                                    // server.close((err) => {
+                                                    // console.log('server closed')
+                                                    // process.exit(err ? 1 : 0)
+                                                    // })
 
-        
+                                                }catch(Exception ex)
+                                                {
+                                                    echo("readAndClose Deletion Exception: ${ex}")
+                                                }//end try catch(Exception ex)
+                                        }  //end script                
+                                    } //end step
+                        } //end stage
 
-    }//ending main->stages 
-}//end of pipeline
+                }// end parallel
+            }// end all stage
+    } // end all stages
+
+}//end pipeline  
